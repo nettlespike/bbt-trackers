@@ -2,35 +2,93 @@ import Head from 'next/head'
 import React, {useState} from "react";
 import Counter from '../components/counter';
 import NavBar from '../components/navbar';
+import { Bar } from 'react-chartjs-2';
 
 export default function Home() {
-  
-  const [moneySpent, setMoneySpent] = useState(0);
-  const [startingMoney, setStartingMoney] = useState(0);
+
+  const roundToCent = (val) => {
+    return Math.round((val + Number.EPSILON) * 100) / 100;
+  }
+  const getRandomNumber = (min, max) => {
+    const ran = Math.random() * (max - min) + min;
+    return roundToCent(ran);
+  }
+
+  const [bubbleTeaSpending, setBubbleTeaSpending]= useState([
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+    getRandomNumber(5, 20),
+  ]); // in days
+
+  var sum = 0;
+  bubbleTeaSpending.forEach((value) => {
+    sum += value;
+  });
+
+  sum = roundToCent(sum);
+
+  const [moneySpent, setMoneySpent] = useState(sum);
+  const [startingMoney, setStartingMoney] = useState(sum);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
+  
+
+  const data = {
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    datasets: [{
+      label: "Money Spent",
+      data: [bubbleTeaSpending[0], bubbleTeaSpending[1], bubbleTeaSpending[2], bubbleTeaSpending[3], bubbleTeaSpending[4], bubbleTeaSpending[5], bubbleTeaSpending[6]],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }]
+  }
 
   const addMoney = () => {
-    if(!Number.isNaN(input)) {
-      const tmp = moneySpent + parseFloat(input);
-      if(moneySpent == 0 && startingMoney == 0) {
-        setStartingMoney(0);
-        setMoneySpent(tmp);
+    if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
+      const currentTotal = moneySpent + parseFloat(input);
+      const day = new Date().getDay();
+      
+      const tmpArray = bubbleTeaSpending;
+      tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
+
+      setBubbleTeaSpending(tmpArray);
+      
+      if(flag == 0) {
+        setStartingMoney(sum);
+        setMoneySpent(currentTotal);
       }
       else {
         setStartingMoney(moneySpent);
-        setMoneySpent(tmp);
+        setMoneySpent(currentTotal);
       }
       setInput('');
       setFlag(flag + 1);
-      //console.log(moneySpent);
+      // console.log(moneySpent);
     }
   }
 
   return (
     <div className="overflow-x-hidden">
-
-
+      
       <Head>
         <title>BBT Trackers</title>
         <link rel="icon" href="/favicon.ico" />
@@ -66,6 +124,17 @@ export default function Home() {
                 }
               />
             </div>
+          </div>
+          <div className="p-8">
+            <Bar
+              data={data}
+              width={800}
+              height={400}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+              }}
+            />
           </div>
         </div>
       </div>
