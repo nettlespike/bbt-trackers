@@ -10,7 +10,7 @@ const Login = () => {
 return (
     <div className = "overflow-x-hidden">
         <div className = "flex flex-col m-auto h-screen overflow-auto justify-center items-center space-y-5">        
-            <h1 className = "flex text-6xl m-4">
+            <h1 className = "flex text-6xl font-bold m-4">
                 Login
             </h1>
             <form className = "grid gap-y-4 grid-cols-2 p-2" id = "userform">
@@ -35,7 +35,7 @@ return (
             </form>
         <div className = "flex flex-row space-x-10">
             <button
-                className = "bg-indigo-500 hover:bg-indigo-700 rounded x2 flex-grow text-white p-2"
+                className = "flex flex-grow object-none object-right bg-indigo-500 hover:bg-indigo-700 rounded x2 flex-grow text-white p-2"
                 type="submit"
                 value="Submitted"
                 form="userform"
@@ -43,7 +43,7 @@ return (
                 Login
             </button>
             <button
-                className = "bg-indigo-500 hover:bg-indigo-700 rounded x2 flex-grow text-white p-2"
+                className = "flex flex-grow object-none object-right bg-indigo-500 hover:bg-indigo-700 rounded x2 flex-grow text-white p-2"
                 type="submit"
                 value="newUser"
                 form="userform"
