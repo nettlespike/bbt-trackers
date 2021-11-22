@@ -17,6 +17,27 @@ export default function Navbar() {
     return sideBar? "slideIn" : "slideOut";
   }
   
+  const clickedOutside = (ref) => {
+    useEffect(() => {
+      /**
+      * Alert if clicked on outside of element
+      **/
+      function handleClickOutside(event) {
+        if(ref.current && !ref.current.contains(event.target)) {
+          setsideBar(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  clickedOutside(wrapperRef);
 
   return (
     <div className="sideBar">
@@ -32,9 +53,9 @@ export default function Navbar() {
       <div className="justify-self-center self-center">
         <h1>Bubble Tea Tracker</h1>
       </div>
-      <div className={getSideBarClassName()}>
+      <div ref={wrapperRef} className={getSideBarClassName()}>
         <div className="relative w-96 text-white shadow-xl">
-            <div className="space-y-5 h-screen bg-black overflow-y-auto">
+            <div className="space-y-5 h-screen bg-gray-800 overflow-y-auto">
               <div onClick={toggleSidebar} className="px-10 py-6">
                 <button className="pt-2 pl-2">
                   <svg viewBox="0 0 100 80" width="40" height="40">
@@ -60,7 +81,7 @@ export default function Navbar() {
                     Home
                   </a>
                 </Link>
-                <Link href="/chart">
+                <Link href="/Spending">
                   <a className="sideBarElement" onClick={toggleSidebar}>
                     Tracking Your Spending
                   </a>
