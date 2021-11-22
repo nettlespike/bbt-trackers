@@ -2,25 +2,17 @@ import Head from 'next/head'
 import React, {useState} from "react";
 import Counter from '../components/counter';
 import NavBar from '../components/navbar';
-import { Bar } from 'react-chartjs-2';
 import Login from './login.js'
 export default function Home() {
   const[token, setToken] = useState('notlogged');
-  const handleChange = (event) => {
-    setMyCar(event.target.value)
-  }
-  if(token==='notlogged') {
-    return <Login setToken={setToken} />
-  }
-  
-  const roundToCent = (val) => {
-    return Math.round((val + Number.EPSILON) * 100) / 100;
-  }
-
   const [moneySpent, setMoneySpent] = useState(0);
   const [startingMoney, setStartingMoney] = useState(0);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
+
+  if(token === 'notlogged') {
+    return <Login setToken={setToken}/>
+  }
 
   const addMoney = () => {
     if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
