@@ -35,32 +35,6 @@ export default function Home() {
   const [startingMoney, setStartingMoney] = useState(sum);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
-  
-
-  const data = {
-    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    datasets: [{
-      label: "Money Spent",
-      data: [bubbleTeaSpending[0], bubbleTeaSpending[1], bubbleTeaSpending[2], bubbleTeaSpending[3], bubbleTeaSpending[4], bubbleTeaSpending[5], bubbleTeaSpending[6]],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  }
 
   const addMoney = () => {
     if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
@@ -106,11 +80,11 @@ export default function Home() {
             <p className="text-md font-serif">Spent on Bubble Tea So Far</p>
           </div>
 
-          <div className="space-y-6">
-            <p className="text-2xl">How much did you spend on Bubble Tea today?</p>
-            <div className="flex flex-row space-x-6">
+          <div className="space-y-2">
+            <p className="text-xl md:text-3xl lg:text-4xl text-center">How much did you spend on Bubble Tea today?</p>
+            <div className="flex flex-row space-x-6 justify-center">
               <input 
-                className="w-full border-2 border-gray-300 rounded-xl text-4xl p-2"
+                className="w-1/2 md:w-3/4 lg:w-full border-2 border-gray-300 rounded-xl text-4xl p-2"
                 type="text"
                 placeholder="I've spent..."
                 value={input}
@@ -124,17 +98,6 @@ export default function Home() {
                 }
               />
             </div>
-          </div>
-          <div className="p-8">
-            <Bar
-              data={data}
-              width={800}
-              height={400}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-              }}
-            />
           </div>
         </div>
       </div>
