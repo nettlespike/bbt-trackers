@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Head from 'next/head';
 
 export default function Navbar() {
   const [sideBar, setsideBar] = useState(false);
@@ -40,6 +41,11 @@ export default function Navbar() {
   clickedOutside(wrapperRef);
 
   return (
+    <>
+      <Head>
+        <title>BBT Trackers</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     <div className="sideBar">
       <div className="px-10 col-start-1 row-start-1 py-6">
         <button onClick={toggleSidebar} className="pl-2 pt-2">
@@ -86,11 +92,6 @@ export default function Navbar() {
                     Tracking Your Spending
                   </a>
                 </Link>
-                <Link href="/flavourTracking">
-                  <a className="sideBarElement" onClick={toggleSidebar}>
-                    Flavour Tracker
-                  </a>
-                </Link>
                 <Link href="/LoggedOut">
                     <a className="sideBarElement" onClick={toggleSidebar}>
                         Log Out
@@ -101,5 +102,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </>
   );
 }
