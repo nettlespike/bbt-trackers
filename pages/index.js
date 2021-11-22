@@ -16,7 +16,7 @@ function getToken() {
 }*/
 export default function Home() {
   //const token = getToken();
-  const [token, setToken] = useToken();
+  const [token, setToken] = useState(false);
   const [moneySpent, setMoneySpent] = useState(0);
   const [startingMoney, setStartingMoney] = useState(0);
   const [input, setInput] = useState('');
