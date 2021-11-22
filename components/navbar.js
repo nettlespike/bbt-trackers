@@ -81,12 +81,12 @@ export default function Navbar() {
                     Home
                   </a>
                 </Link>
-                <Link href="/Spending">
+                <Link href="/spending">
                   <a className="sideBarElement" onClick={toggleSidebar}>
                     Tracking Your Spending
                   </a>
                 </Link>
-                <Link href="/FlavourTracking">
+                <Link href="/flavourTracking">
                   <a className="sideBarElement" onClick={toggleSidebar}>
                     Flavour Tracker
                   </a>
