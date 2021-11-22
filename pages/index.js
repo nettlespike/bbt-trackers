@@ -17,10 +17,15 @@ function getToken() {
 export default function Home() {
   //const token = getToken();
 
-  const [bubbleTeaSpending, setBubbleTeaSpending] = useState(spendingData);
+  var sum = 0;
+  spendingData.forEach((value) => {
+		sum = sum + value;
+		sum = Math.round((sum + Number.EPSILON) * 100) / 100;
+	});
+
   const [token, setToken] = useState(false);
-  const [moneySpent, setMoneySpent] = useState(0);
-  const [startingMoney, setStartingMoney] = useState(0);
+  const [moneySpent, setMoneySpent] = useState(sum);
+  const [startingMoney, setStartingMoney] = useState(sum);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
 
@@ -29,18 +34,13 @@ export default function Home() {
   }
 
 
+
   const addMoney = () => {
     if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
       const currentTotal = moneySpent + parseFloat(input);
-      const day = new Date().getDay();
-      
-      const tmpArray = bubbleTeaSpending;
-      tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
-
-      setBubbleTeaSpending(tmpArray);
       
       if(flag === 0) {
-        setStartingMoney(0);
+        setStartingMoney(sum);
         setMoneySpent(currentTotal);
       }
       else {
