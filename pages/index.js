@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Counter from '../components/counter';
 import NavBar from '../components/navbar';
 import Login from './login.js'
+import { spendingData } from "../data/spendings";
 //import useToken from './usetoken.js';
 /*
 function setToken(userToken) {
@@ -15,6 +16,8 @@ function getToken() {
 }*/
 export default function Home() {
   //const token = getToken();
+
+  const [bubbleTeaSpending, setBubbleTeaSpending] = useState(spendingData);
   const [token, setToken] = useState(false);
   const [moneySpent, setMoneySpent] = useState(0);
   const [startingMoney, setStartingMoney] = useState(0);
@@ -25,17 +28,18 @@ export default function Home() {
     return <Login setToken={setToken}/>
   }
 
+
   const addMoney = () => {
     if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
       const currentTotal = moneySpent + parseFloat(input);
-      //const day = new Date().getDay();
+      const day = new Date().getDay();
       
-      //const tmpArray = bubbleTeaSpending;
-      //tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
+      const tmpArray = bubbleTeaSpending;
+      tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
 
-      //setBubbleTeaSpending(tmpArray);
+      setBubbleTeaSpending(tmpArray);
       
-      if(flag == 0) {
+      if(flag === 0) {
         setStartingMoney(0);
         setMoneySpent(currentTotal);
       }
