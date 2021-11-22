@@ -3,9 +3,16 @@ import React, {useState} from "react";
 import Counter from '../components/counter';
 import NavBar from '../components/navbar';
 import { Bar } from 'react-chartjs-2';
-
+import Login from './login.js'
 export default function Home() {
-
+  const[token, setToken] = useState('notlogged');
+  const handleChange = (event) => {
+    setMyCar(event.target.value)
+  }
+  if(token==='notlogged') {
+    return <Login setToken={setToken} />
+  }
+  
   const roundToCent = (val) => {
     return Math.round((val + Number.EPSILON) * 100) / 100;
   }
