@@ -9,45 +9,24 @@ export default function Home() {
   const roundToCent = (val) => {
     return Math.round((val + Number.EPSILON) * 100) / 100;
   }
-  const getRandomNumber = (min, max) => {
-    const ran = Math.random() * (max - min) + min;
-    return roundToCent(ran);
-  }
 
-  const [bubbleTeaSpending, setBubbleTeaSpending]= useState([
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-    getRandomNumber(5, 20),
-  ]); // in days
-
-  var sum = 0;
-  bubbleTeaSpending.forEach((value) => {
-    sum += value;
-  });
-
-  sum = roundToCent(sum);
-
-  const [moneySpent, setMoneySpent] = useState(sum);
-  const [startingMoney, setStartingMoney] = useState(sum);
+  const [moneySpent, setMoneySpent] = useState(0);
+  const [startingMoney, setStartingMoney] = useState(0);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
 
   const addMoney = () => {
     if(!Number.isNaN(input) && !Number.isNaN(parseFloat(input))) {
       const currentTotal = moneySpent + parseFloat(input);
-      const day = new Date().getDay();
+      //const day = new Date().getDay();
       
-      const tmpArray = bubbleTeaSpending;
-      tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
+      //const tmpArray = bubbleTeaSpending;
+      //tmpArray[day] = bubbleTeaSpending[day] + parseFloat(input);
 
-      setBubbleTeaSpending(tmpArray);
+      //setBubbleTeaSpending(tmpArray);
       
       if(flag == 0) {
-        setStartingMoney(sum);
+        setStartingMoney(0);
         setMoneySpent(currentTotal);
       }
       else {
