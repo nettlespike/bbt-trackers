@@ -18,13 +18,6 @@ export default function LoggedOut() {
                         />
                     </div>
                 </div>
-                <Link href = "/"> 
-                    <input
-                        className = "flex object-none justify-center bg-indigo-500 hover:bg-indigo-700 rounded x2 text-white p-2"
-                        type="submit"
-                        value="Login Again"
-                    />
-                 </Link>
             </div>
             
         </div>    
