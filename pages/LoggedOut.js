@@ -22,6 +22,4 @@ export default function LoggedOut() {
         </div>
         </>
     )
-
-
 }
