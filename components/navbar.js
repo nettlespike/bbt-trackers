@@ -51,7 +51,7 @@ export default function Navbar() {
         </button>
       </div>
       <div className="justify-self-center self-center">
-        <h1>Bubble Tea Tracker</h1>
+        <h1 className="text-lg md:text-2xl">Bubble Tea Tracker</h1>
       </div>
       <div ref={wrapperRef} className={getSideBarClassName()}>
         <div className="relative w-96 text-white shadow-xl">
@@ -90,6 +90,11 @@ export default function Navbar() {
                   <a className="sideBarElement" onClick={toggleSidebar}>
                     Flavour Tracker
                   </a>
+                </Link>
+                <Link href="/LoggedOut">
+                    <a className="sideBarElement" onClick={toggleSidebar}>
+                        Log Out
+                    </a>
                 </Link>
               </div>
             </div>
