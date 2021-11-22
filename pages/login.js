@@ -27,6 +27,8 @@ export default function Login ({setToken}) {
     }
     
     return (
+        
+
         <div className = "overflow-x-hidden">
             <div className = "flex flex-col m-auto h-screen overflow-auto justify-center items-center space-y-5">        
                 <h1 className = "flex text-6xl font-bold m-4">
