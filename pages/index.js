@@ -3,14 +3,26 @@ import React, {useState} from "react";
 import Counter from '../components/counter';
 import NavBar from '../components/navbar';
 import Login from './login.js'
+//import useToken from './usetoken.js';
+/*
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}*/
 export default function Home() {
-  const[token, setToken] = useState('notlogged');
+  //const token = getToken();
+  const [token, setToken] = useToken();
   const [moneySpent, setMoneySpent] = useState(0);
   const [startingMoney, setStartingMoney] = useState(0);
   const [input, setInput] = useState('');
   const [flag, setFlag] = useState(0);
 
-  if(token === 'notlogged') {
+  if(token==false) {
     return <Login setToken={setToken}/>
   }
 

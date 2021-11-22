@@ -9,23 +9,21 @@ export default function Login ({setToken}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     async function loginUser(credentials) {
-        return fetch('http://localhost:8080/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(credentials)
-        })
-          .then(data => data.json())
+        //alert(username+" d "+password);
+        if(username=='test'&&password=='password')return true;
+        else return false;
     }
     const submitted = async e =>{
         e.preventDefault();
         const token = await loginUser({
             username,
             password
-        });
-        setToken(token);
-        
+        })
+       // alert(username+" "+password);
+        if(token) setToken(token);
+        else {
+            alert("Wrong login info. Please try again");
+        }
     }
     
     return (
