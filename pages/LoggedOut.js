@@ -5,7 +5,7 @@ export default function LoggedOut() {
 
 
     return (
-      <><div className="relative bg-white flex justify-center w-screen">
+        <div className="relative bg-white flex justify-center w-screen">
             <div className="flex flex-col justify-start space-y-10 pt-32 z-10">
                 <div className="flex flex-col text-center">
                     <div className="text-center text-5xl text-indigo-800">
@@ -13,8 +13,7 @@ export default function LoggedOut() {
                     </div>
                 </div>
             </div>
-        </div><button onclick="location.href='http://www.google.com'" type="button">
-                www.example.com</button></>
+        </div>
     )
 
 
